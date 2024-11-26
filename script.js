@@ -54,6 +54,18 @@ function createCardItem(name, numberPages, author, read) {
     return card;
 }
 
+function addDemoCards() {
+    let demoBooks = {
+        book1: new Book("Brave New World", "Aldous Huxley", 268),
+        book2: new Book("To Kill a Mockingbird", "Harper Lee", 323),
+        book3: new Book("A Clockwork Orange", "Anthony Burgess", 240)
+    };
+
+    for (let book in demoBooks) {
+        books.push(demoBooks[book]);
+    }
+}
+
 function updateBookCards() {
     const booksDiv = document.querySelector(".books");
     booksDiv.replaceChildren();
@@ -80,3 +92,7 @@ form.addEventListener("submit", () => {
     form.reset();
     modal.close();
 });
+document.addEventListener("onload", () => updateBookCards());
+
+addDemoCards();
+setTimeout(updateBookCards, 0);
