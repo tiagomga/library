@@ -12,6 +12,7 @@
 body {
     position: relative;
     height: 100vh;
+    background-color: rgb(232, 232, 232);
 }
 
 .header {
@@ -30,8 +31,6 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 24px 84px;
-    background-color: rgb(232, 232, 232);
-    height: 85%;
 }
 
 .content > button {
