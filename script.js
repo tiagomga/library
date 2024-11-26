@@ -93,7 +93,8 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeout(updateBookCards, 0);
     openButton.addEventListener("click", () => modal.showModal());
     closeButton.addEventListener("click", () => modal.close());
-    form.addEventListener("submit", () => {
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
         const name = document.querySelector("#name").value;
         const author = document.querySelector("#author").value;
         const numberPages = document.querySelector("#pages").value;
