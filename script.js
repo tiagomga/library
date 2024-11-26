@@ -34,6 +34,12 @@ function createCardItem(name, numberPages, author, read) {
     bookAuthor.classList.add("book-author");
     readStatus.classList.add("read-status");
 
+    if (read) {
+        readStatus.classList.add("read");
+    } else {
+        readStatus.classList.remove("read");
+    }
+
     cardContent.appendChild(bookName);
     cardContent.appendChild(bookPages);
     cardContent.appendChild(bookAuthor);
@@ -71,6 +77,7 @@ function updateBookCards() {
     booksDiv.replaceChildren();
     for (let book of books) {
         const bookCard = createCardItem(book.name, book.numberPages, book.author, book.read);
+        bookCard.setAttribute("data-attribute", books.indexOf(book));
         booksDiv.appendChild(bookCard);
     }
 }
@@ -79,20 +86,33 @@ const openButton = document.querySelector("#open-modal");
 const closeButton = document.querySelector("#close-button");
 const form = document.querySelector("form");
 const modal = document.querySelector("dialog");
+const booksDiv = document.querySelector(".books");
 
-openButton.addEventListener("click", () => modal.showModal());
-closeButton.addEventListener("click", () => modal.close());
-form.addEventListener("submit", () => {
-    const name = document.querySelector("#name").value;
-    const author = document.querySelector("#author").value;
-    const numberPages = document.querySelector("#pages").value;
-    let book = new Book(name, author, numberPages);
-    books.push(book);
-    updateBookCards();
-    form.reset();
-    modal.close();
+document.addEventListener("DOMContentLoaded", () => {
+    addDemoCards();
+    setTimeout(updateBookCards, 0);
+    openButton.addEventListener("click", () => modal.showModal());
+    closeButton.addEventListener("click", () => modal.close());
+    form.addEventListener("submit", () => {
+        const name = document.querySelector("#name").value;
+        const author = document.querySelector("#author").value;
+        const numberPages = document.querySelector("#pages").value;
+        let book = new Book(name, author, numberPages);
+        books.push(book);
+        updateBookCards();
+        form.reset();
+        modal.close();
+    });
+    document.addEventListener("onload", () => updateBookCards());
+    booksDiv.addEventListener("click", (e) => {
+        if (e.target.classList.contains("delete")) {
+            let index = parseInt(e.target.parentNode.parentNode.getAttribute("data-attribute"));
+            books.splice(index, 1);
+            updateBookCards();
+        } else if (e.target.classList.contains("mark-read")) {
+            let index = parseInt(e.target.parentNode.parentNode.getAttribute("data-attribute"));
+            books[index].read = !books[index].read;
+            updateBookCards();
+        }
+    });
 });
-document.addEventListener("onload", () => updateBookCards());
-
-addDemoCards();
-setTimeout(updateBookCards, 0);
