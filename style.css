@@ -158,7 +158,6 @@ form button {
 .card:hover {
     transform: scale(1.02);
     box-shadow: 2px 3px 2px rgb(171, 171, 171);
-    transition: 0.3s ease;
 }
 
 .card-content {
