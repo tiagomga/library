@@ -30,6 +30,8 @@ body {
     flex-direction: column;
     align-items: center;
     padding: 24px;
+    background-color: rgb(232, 232, 232);
+    height: 85%;
 }
 
 .content > button {
