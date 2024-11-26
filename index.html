@@ -10,7 +10,7 @@
 <body>
     <div class="header">Library</div>
     <div class="content">
-        <button type="button">Add book</button>
+        <button type="button" id="open-modal">Add book</button>
         <dialog>
             <form action="dialog">
                 <div class="book-name">
@@ -19,14 +19,16 @@
                 </div>
                 <div class="book-author">
                     <label for="author">Author</label>
-                    <input type="text" name="author" required>
+                    <input type="text" name="author" id="author" required>
                 </div>
                 <div class="page-number">
                     <label for="pages">Number of pages</label>
                     <input type="number" min="0" name="pages" id="pages" required>
                 </div>
-                <button type="button" id="close-button">Close</button>
-                <button type="button">Add</button>
+                <div class="form-buttons">
+                    <button type="button" id="close-button">Close</button>
+                    <button type="submit">Add</button>
+                </div>
             </form>
         </dialog>
         <div class="books"></div>
